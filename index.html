@@ -934,9 +934,45 @@ class Game {
     ctx.textBaseline = 'alphabetic';
     ctx.fillText('or press  ENTER', CANVAS_W / 2, sbY + sbH + 22);
 
+    // Sign Up / Sign In CTA buttons
+    const ctaW = 140, ctaH = 40, ctaGap = 16;
+    const ctaTotalW = ctaW * 2 + ctaGap;
+    const ctaX0 = (CANVAS_W - ctaTotalW) / 2;
+    const ctaY  = sbY + sbH + 46;
+
+    // Sign Up (left, filled dark)
+    const suHov = Mouse.x >= ctaX0 && Mouse.x <= ctaX0 + ctaW &&
+                  Mouse.y >= ctaY   && Mouse.y <= ctaY + ctaH;
+    ctx.fillStyle   = suHov ? '#333333' : '#111111';
+    ctx.fillRect(ctaX0, ctaY, ctaW, ctaH);
+    ctx.strokeStyle = '#AAAAAA';
+    ctx.lineWidth   = 1.5;
+    ctx.strokeRect(ctaX0, ctaY, ctaW, ctaH);
+    ctx.fillStyle    = '#FFFFFF';
+    ctx.font         = '14px monospace';
+    ctx.textAlign    = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText('Sign Up', ctaX0 + ctaW / 2, ctaY + ctaH / 2);
+
+    // Sign In (right, outline)
+    const siX   = ctaX0 + ctaW + ctaGap;
+    const siHov = Mouse.x >= siX  && Mouse.x <= siX + ctaW &&
+                  Mouse.y >= ctaY && Mouse.y <= ctaY + ctaH;
+    ctx.fillStyle   = siHov ? 'rgba(255,255,255,0.15)' : 'rgba(0,0,0,0)';
+    ctx.fillRect(siX, ctaY, ctaW, ctaH);
+    ctx.strokeStyle = '#AAAAAA';
+    ctx.lineWidth   = 1.5;
+    ctx.strokeRect(siX, ctaY, ctaW, ctaH);
+    ctx.fillStyle    = '#FFFFFF';
+    ctx.font         = '14px monospace';
+    ctx.textAlign    = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText('Sign In', siX + ctaW / 2, ctaY + ctaH / 2);
+
     // Footer
     ctx.fillStyle = '#2A3A2A';
     ctx.font      = '11px monospace';
+    ctx.textBaseline = 'alphabetic';
     ctx.fillText('PIXEL ASSAULT  ·  Retro Shooter', CANVAS_W / 2, CANVAS_H - 18);
 
     ctx.restore();
